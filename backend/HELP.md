@@ -1,5 +1,39 @@
 # Getting Started
 
+# Frontend 
+install node : https://nodejs.org/en
+
+in the frontend terminal : 
+npm install -g @angular/cli
+npm install
+npm start
+
+# Backend
+jdk 17 needed : https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
+
+in the backend terminal : 
+./mvnw clean install
+java -jar .\target\Social-App-0.0.1-SNAPSHOT.jar
+
+# DataBase
+install MySQL
+MySQL Workbench
+
+create your local database following this : 
+    spring.datasource.url=jdbc:mysql://localhost:3306/my_database
+    spring.datasource.username=my_user
+    spring.datasource.password=handsonhcidb
+
+in a terminal :
+mysql -u my_user -p
+handsonhcidb
+CREATE DATABASE my_database
+CREATE USER 'my_user'@'localhost' IDENTIFIED BY 'handsonhcidb';
+GRANT ALL PRIVILEGES ON my_database.* TO 'my_user'@'localhost';
+FLUSH PRIVILEGES;
+
+
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

@@ -1,0 +1,118 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.controller.UserControllerIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 0, Errors: 19, Skipped: 0, Time elapsed: 0.042 s <<< FAILURE! - in com.kpjunaid.controller.UserControllerIntegrationTest
+followUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+verifyEmail  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+deleteUserAccount  Time elapsed: 0.013 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+signup  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+searchUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+updateUserPassword  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+updateCoverPhoto  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+resetPassword  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+unfollowUser  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+login  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+updateProfilePhoto  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+getUserPosts  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+updateUserInfo  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+forgotPassword  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+getUserFollowerUsers  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+getUserFollowingUsers  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+updateUserEmail  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+showUserProfile  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+
+getUserById  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.UserControllerIntegrationTest.<init>(UserControllerIntegrationTest.java:63)
+

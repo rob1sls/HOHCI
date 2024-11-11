@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.controller.TimelineControllerIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! - in com.kpjunaid.controller.TimelineControllerIntegrationTest
+getTimelineTags  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.TimelineControllerIntegrationTest.<init>(TimelineControllerIntegrationTest.java:48)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.TimelineControllerIntegrationTest.<init>(TimelineControllerIntegrationTest.java:48)
+
+getTimelinePosts  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.controller.TimelineControllerIntegrationTest.<init>(TimelineControllerIntegrationTest.java:48)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.controller.TimelineControllerIntegrationTest.<init>(TimelineControllerIntegrationTest.java:48)
+

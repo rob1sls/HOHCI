@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.controller.CountryControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! - in com.kpjunaid.controller.CountryControllerTest
+shouldReturnListOfCountries  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/entity/Country$CountryBuilder
+	at com.kpjunaid.controller.CountryControllerTest.<init>(CountryControllerTest.java:33)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.entity.Country$CountryBuilder
+	at com.kpjunaid.controller.CountryControllerTest.<init>(CountryControllerTest.java:33)
+

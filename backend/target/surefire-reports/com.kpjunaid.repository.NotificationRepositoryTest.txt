@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.repository.NotificationRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! - in com.kpjunaid.repository.NotificationRepositoryTest
+shouldDeleteNotification_whenOwningCommentIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+
+shouldDeleteNotification_whenOwningPostIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+
+shouldReturnListOfUnseenNotification_whenReceiverIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+
+shouldReturnListOfNotification_whenReceiverIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+
+shouldReturnOptionalOfNotification_whenReceiverOwningPostAndTypeIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+
+shouldReturnListOfUnreadNotification_whenReceiverIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.NotificationRepositoryTest.<init>(NotificationRepositoryTest.java:35)
+

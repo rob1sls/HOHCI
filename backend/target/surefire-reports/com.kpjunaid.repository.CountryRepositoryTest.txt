@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.repository.CountryRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in com.kpjunaid.repository.CountryRepositoryTest
+shouldReturnOptionalOfCountry_whenNameIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.CountryRepositoryTest.<init>(CountryRepositoryTest.java:20)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.CountryRepositoryTest.<init>(CountryRepositoryTest.java:20)
+

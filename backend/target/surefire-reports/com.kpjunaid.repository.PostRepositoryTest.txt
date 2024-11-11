@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.repository.PostRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 4, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in com.kpjunaid.repository.PostRepositoryTest
+shouldReturnListOfPostShares_whenSharedPostIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+
+shouldReturnListOfPosts_whenUserIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+
+shouldReturnListOfPosts_whenFollowingAndOwnUserIdIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+
+shouldReturnListOfPosts_whenTagIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/shared/MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.shared.MockResourceRepo
+	at com.kpjunaid.repository.PostRepositoryTest.<init>(PostRepositoryTest.java:29)
+

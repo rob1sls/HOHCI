@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Test set: com.kpjunaid.service.CountryServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in com.kpjunaid.service.CountryServiceTest
+shouldReturnCountry_whenCountryIdIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/entity/Country$CountryBuilder
+	at com.kpjunaid.service.CountryServiceTest.<init>(CountryServiceTest.java:28)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.entity.Country$CountryBuilder
+	at com.kpjunaid.service.CountryServiceTest.<init>(CountryServiceTest.java:28)
+
+shouldReturnListOfCountriesOrderedByNameAscending  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/entity/Country$CountryBuilder
+	at com.kpjunaid.service.CountryServiceTest.<init>(CountryServiceTest.java:28)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.entity.Country$CountryBuilder
+	at com.kpjunaid.service.CountryServiceTest.<init>(CountryServiceTest.java:28)
+
+shouldReturnCountry_whenCountryNameIsGiven  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: com/kpjunaid/entity/Country$CountryBuilder
+	at com.kpjunaid.service.CountryServiceTest.<init>(CountryServiceTest.java:28)
+Caused by: java.lang.ClassNotFoundException: com.kpjunaid.entity.Country$CountryBuilder
+	at com.kpjunaid.service.CountryServiceTest.<init>(CountryServiceTest.java:28)
+

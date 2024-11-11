@@ -98,9 +98,11 @@ public class UserServiceImpl implements UserService {
             newUser.setRole(Role.ROLE_USER.name());
             User savedUser = userRepository.save(newUser);
             UserPrincipal userPrincipal = new UserPrincipal(savedUser);
+            /*
             String emailVerifyMail =
                     emailService.buildEmailVerifyMail(jwtTokenService.generateToken(userPrincipal));
             emailService.send(savedUser.getEmail(), AppConstants.VERIFY_EMAIL, emailVerifyMail);
+            */
             return savedUser;
         }
         return null;
