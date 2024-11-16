@@ -11,6 +11,7 @@ import { UserSignup } from '../model/user-signup';
 	providedIn: 'root'
 })
 export class AuthService {
+  
 	logoutSubject = new Subject<boolean>();
 	loginSubject = new Subject<User>();
 	private host = environment.apiUrl;
@@ -60,6 +61,7 @@ export class AuthService {
 		}
 		this.loginSubject.next(authUser);
 	}
+
 
 	getAuthUserFromCache(): User {
 		return JSON.parse(localStorage.getItem('authUser'));

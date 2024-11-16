@@ -36,6 +36,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 	loadingProfile: boolean = false;
 	hasNoPost: boolean = false;
 
+	expBorderEnabled = false;
+
+
 	private subscriptions: Subscription[] = [];
 
 	constructor(
@@ -60,6 +63,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 				this.profileUserId = Number(this.activatedRoute.snapshot.paramMap.get('userId'));
 			}
 
+			console.log(this.authUser);
+
+
 			this.subscriptions.push(
 				this.userService.getUserById(this.profileUserId).subscribe({
 					next: (foundUserResponse: UserResponse) => {
@@ -80,7 +86,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 						}
 
 						this.profileUser = foundUser;
-
+						console.log(this.profileUser);
+						//this.profileUser.reportExp = 500;
 						this.loadProfilePosts(1);
 
 						this.loadingProfile = false;
@@ -98,7 +105,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 		}
 
 		
+
 	}
+
+	toggleExpBorder(): void {
+		this.expBorderEnabled = !this.expBorderEnabled;
+	  }
 
 	ngOnDestroy(): void {
 		this.subscriptions.forEach(sub => sub.unsubscribe());
@@ -261,5 +273,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 	handlePostDeletedEvent(postResponse: PostResponse): void {
 		document.getElementById(`profilePost${postResponse.post.id}`).remove();
+	}
+
+
+	calculateExpPercentage(reportExp: number): number {
+		const currentLevelExp = reportExp >= 250 ? 250 : (reportExp >= 100 ? 100 : 0); // Starting EXP of current level
+		const threshold = this.getExpThreshold();
+		return ((reportExp - currentLevelExp) / (threshold - currentLevelExp)) * 100;
+	}
+	
+	
+	getExpThreshold(): number {
+		if (this.profileUser.reportExp >= 250) return 1000; // After reaching level 2, set a higher threshold if desired
+		if (this.profileUser.reportExp >= 100) return 250; // Level 2 threshold
+		return 100; // Level 1 threshold
+	}
+	
+	getShieldColor(): string {
+		if (this.profileUser.reportExp >= 250) {
+			return 'gold'; // Level 2 color
+		} else if (this.profileUser.reportExp >= 100) {
+			return 'gray'; // Level 1 color
+		}
+		return 'brown'; // Default color if below level 1
 	}
 }

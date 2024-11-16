@@ -1,11 +1,14 @@
-<mat-toolbar color="primary" class="position-fixed top-0 mat-elevation-z3 p-4" style="z-index: 999;">
-	<a href="/" class="text-white text-decoration-none">Social App</a>
+<mat-toolbar class="position-fixed top-0 mat-elevation-z3 p-4" style="z-index: 999; background-color: black; color: white;">
 
+	<a href="/" class="text-white text-decoration-none">
+		<img src="assets/images/logo_blanc.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+	</a>
+	
 	<span class="example-spacer"></span>
 
 	<a href="/profile" class="rounded-pill ps-2 pt-1 pe-3 pb-1 text-white text-decoration-none" *ngIf="isUserLoggedIn">
 		<span class="rounded-circle d-inline-block align-middle centered-bg-image"
-			style="width: 30px; height: 30px; background-color: white; background-image: url('{{authUser.profilePhoto ? authUser.profilePhoto : defaultProfilePhotoUrl}}');"></span>
+			style="z-index: inherit; width: 30px; height: 30px; background-color: white; background-image: url('{{defaultProfilePhotoUrl}}');"></span>
 		<span class="mat-body-strong d-inline-block align-middle ps-2">{{ authUser?.firstName }}</span>
 	</a>
 

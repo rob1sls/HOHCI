@@ -16,6 +16,7 @@ import { PostShareDialogComponent } from '../post-share-dialog/post-share-dialog
 import { ShareConfirmDialogComponent } from '../share-confirm-dialog/share-confirm-dialog.component';
 import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { WaitingDialogComponent } from '../waiting-dialog/waiting-dialog.component';
+import { PostReportDialogComponent } from '../post-report-dialog/post-report-dialog.component';
 
 @Component({
 	selector: 'app-post',
@@ -30,6 +31,8 @@ export class PostComponent implements OnInit, OnDestroy {
 	defaultProfilePhotoUrl = environment.defaultProfilePhotoUrl;
 
 	private subscriptions: Subscription[] = [];
+	xpGained: number;
+	xpGainedmessage: string;
 
 	constructor(
 		private matDialog: MatDialog,
@@ -74,6 +77,40 @@ export class PostComponent implements OnInit, OnDestroy {
 			maxWidth: '700px'
 		});
 	}
+
+	showXpMessage:boolean = false;
+	
+	openReportDialog(): void {
+		const dialogRef = this.matDialog.open(PostReportDialogComponent, {
+			data: this.postResponse.post,
+			autoFocus: false,
+			minWidth: '500px',
+			maxWidth: '700px'
+		});
+
+		dialogRef.afterClosed().subscribe((xpGained: number) => {
+			if (xpGained) {
+				if (xpGained > 0){
+					this.xpGainedmessage = '+' + xpGained.toString();
+				}
+				else{
+					this.xpGainedmessage = xpGained.toString();
+				}
+				this.showXpMessage = true;
+			}
+	  
+			// Hide the message after 3 seconds
+			setTimeout(() => {
+			  this.showXpMessage = false;
+			}, 1500);
+		  });
+
+
+	}
+
+
+	
+
 
 	openShareConfirmDialog(): void {
 		this.matDialog.open(ShareConfirmDialogComponent, {

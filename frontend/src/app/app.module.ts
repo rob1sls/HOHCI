@@ -41,6 +41,8 @@ import { VerifyEmailComponent } from './component/verify-email/verify-email.comp
 import { MessageComponent } from './component/message/message.component';
 import { ErrorPageComponent } from './component/error-page/error-page.component';
 import { PostComponent } from './component/post/post.component';
+import { PostReportDialogComponent } from './component/post-report-dialog/post-report-dialog.component';
+import { UpdateDialogComponent } from './component/update-dialog/update-dialog.component';
 import { PostLikeDialogComponent } from './component/post-like-dialog/post-like-dialog.component';
 import { PostShareDialogComponent } from './component/post-share-dialog/post-share-dialog.component';
 import { PostCommentDialogComponent } from './component/post-comment-dialog/post-comment-dialog.component';
@@ -74,6 +76,8 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
 		MessageComponent,
 		ErrorPageComponent,
 		PostComponent,
+		UpdateDialogComponent,
+		PostReportDialogComponent,
 		PostLikeDialogComponent,
 		PostShareDialogComponent,
 		PostCommentDialogComponent,

@@ -1,2 +1,5 @@
-node_modules/
+frontend/node_modules/
 frontend/.angular/cache/
+backend/.gradle/
+backend/target/
+backend/uploads/

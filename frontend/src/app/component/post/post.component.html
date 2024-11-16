@@ -5,8 +5,12 @@
 		</div>
 		<mat-card-title>
 			<a href="/users/{{ postResponse.post.author.id }}" class="text-decoration-none text-dark">
+				<mat-icon *ngIf="postResponse.post.author.reportExp > 100 && postResponse.post.author.reportExp < 250" style="color: gray;">shield</mat-icon>
+				<mat-icon *ngIf="postResponse.post.author.reportExp > 250" style="color: gold;">shield</mat-icon>
 				{{ postResponse.post.author.firstName + ' ' + postResponse.post.author.lastName }}
 			</a>
+
+
 		</mat-card-title>
 		<mat-card-subtitle>
 			<mat-icon class="align-middle w-auto h-auto" style="font-size: 16px;">watch_later</mat-icon>
@@ -123,9 +127,24 @@
 				{{ postResponse.post.shareCount }}
 			</span>
 		</mat-chip>
+
+	
 	</mat-chip-list>
 
 	<mat-card-actions align="end" style="margin-top: -50px !important; padding-bottom: 20px;">
+		
+	
+		<button class="me-2" mat-icon-button (click)="openReportDialog()">
+			<ng-container *ngIf="showXpMessage; else iconTemplate">
+			  {{xpGainedmessage}} XP
+			</ng-container>
+			<ng-template #iconTemplate>
+			  <mat-icon>flag</mat-icon>
+			</ng-template>
+		  </button>
+		  
+
+
 		<button class="me-2" mat-icon-button matTooltip="{{postResponse.likedByAuthUser ? 'Unlike' : 'Like'}}"
 			(click)="likeOrUnlikePost(postResponse.likedByAuthUser)">
 			<mat-icon [ngClass]="postResponse.likedByAuthUser ? 'text-danger' : 'text-secondary'">favorite</mat-icon>

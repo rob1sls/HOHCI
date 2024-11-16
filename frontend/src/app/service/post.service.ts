@@ -67,6 +67,13 @@ export class PostService {
 		return this.httpClient.post<any | HttpErrorResponse>(`${this.host}/posts/${postId}/like`, null);
 	}
 
+  reportedPost(postId: number, hatefulType: string): Observable<any | HttpErrorResponse> {
+    console.log("dans reportedPost");
+	console.log(hatefulType);
+	console.log("dans");
+
+	return this.httpClient.post<any | HttpErrorResponse>(`${this.host}/posts/${postId}/report`, {hatefulType});
+}
 	unlikePost(postId: number): Observable<any | HttpErrorResponse> {
 		return this.httpClient.post<any | HttpErrorResponse>(`${this.host}/posts/${postId}/unlike`, null);
 	}
@@ -80,6 +87,8 @@ export class PostService {
 	likePostComment(commentId: number): Observable<any | HttpErrorResponse> {
 		return this.httpClient.post<any | HttpErrorResponse>(`${this.host}/posts/comments/${commentId}/like`, null);
 	}
+
+
 
 	createPostShare(postId: number, content: string): Observable<Post | HttpErrorResponse> {
 		const formData = new FormData();

@@ -2,38 +2,54 @@
 	<mat-spinner style="zoom: 0.5;" class="text-center ms-auto me-auto"></mat-spinner>
 </div>
 
-<div class="profile-header" style="margin-top: 64px" *ngIf="!loadingProfile">
+<div class="profile" style="margin-top: 64px" *ngIf="!loadingProfile">
 	<div class="container">
+
+
+
+
+
+
 		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="profile-cover-photo centered-bg-image mat-elevation-z5 cursor-pointer" (click)="openViewPhotoDialog(profileUser.coverPhoto)"
-					style="height: 300px; background-image: url('{{profileUser.coverPhoto}}')">
-					<div align="end" class="float-end" style="margin-top: 10px; margin-right: 10px" *ngIf="isProfileViewerOwner" (click)="openPhotoUploadDialog($event, 'coverPhoto')">
-						<button mat-mini-fab color="basic">
-							<mat-icon class="text-secondary">upload</mat-icon>
-						</button>
-					</div>
+					style="height: 50px; background-color: gray;">
+					
 				</div>
 			</div>
 		</div>
 
+
+
 		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class=" bg-white position-relative p-5 mat-elevation-z3 rounded-bottom">
-					<div class="profile-picture centered-bg-image d-inline-block border border-5 border-white rounded-3 cursor-pointer mat-elevation-z3 p-0"  (click)="openViewPhotoDialog(profileUser.profilePhoto)"
-						style="margin-top: -100px; height: 180px; width: 180px; background-color: white; background-image: url('{{profileUser.profilePhoto}}');">
-						<div align="end" class="float-end" style="margin-top: -20px; margin-right: -20px" *ngIf="isProfileViewerOwner"  (click)="openPhotoUploadDialog($event, 'profilePhoto')">
-							<button mat-mini-fab color="basic">
-								<mat-icon class="text-secondary">upload</mat-icon>
-							</button>
+
+
+
+					<div class="profile-picture" [ngClass]="{'exp-border-level-1': expBorderEnabled && profileUser.reportExp >= 10 && profileUser.reportExp < 50, 'exp-border-level-2': profileUser.reportExp >= 50}">
+						<div class="profile-picture" (click)="openViewPhotoDialog(profileUser.profilePhoto)" style="background-image: url('{{profileUser.profilePhoto}}');">
+										
+							<div align="end" class="float-end" style="margin-top: -20px; margin-right: -20px" *ngIf="isProfileViewerOwner" 
+								(click)="openPhotoUploadDialog($event, 'profilePhoto')">
+
+							</div>
 						</div>
 					</div>
 
+
+					<br>
+					<br>
+					<br>
+
+
 					<div class="profile-info d-inline-block align-top ps-3" style="margin-top: -30px">
 						<h1 class="mat-display-1 mb-3" style="font-weight: 500;">
+							<mat-icon *ngIf="expBorderEnabled" 
+									  [ngStyle]="{'color': getShieldColor()}" 
+									 >shield</mat-icon>
 							{{ profileUser.firstName + ' ' + profileUser.lastName }}
 						</h1>
-
 						<p>
 							<a class="text-decoration-none text-secondary mat-h3 cursor-pointer" style="font-weight: 500;" (click)="openFollowingDialog(profileUser)">
 								{{ profileUser.followingCount }} Following
@@ -43,6 +59,29 @@
 								{{ profileUser.followerCount }} Follower
 							</a>
 						</p>
+
+						<div class="exp-bar mt-4">
+							
+					
+
+							<mat-progress-bar 
+								mode="determinate" 
+								[value]="calculateExpPercentage(profileUser.reportExp)"
+								>
+							</mat-progress-bar>
+
+							<div class="text-center mt-1">
+								<span>{{ profileUser.reportExp }} / {{ getExpThreshold() }} EXP</span>
+							</div>
+
+
+						</div>
+
+								
+						<button style="margin-top: 20px;" *ngIf="profileUser.reportExp > 100 && profileUser.id == authUser?.id" (click)="toggleExpBorder()" mat-raised-button>
+							{{ expBorderEnabled ? 'Disable Badge' : 'Enable Badge' }}
+						  </button>
+				
 					</div>
 
 					<div style="position: absolute; right: 30px; top: 30px;" *ngIf="!isProfileViewerOwner">
@@ -52,6 +91,11 @@
 				</div>
 			</div>
 		</div>
+
+
+	
+	
+		
 
 		<div class="row justify-content-center mt-5">
 			<div class="col-4">

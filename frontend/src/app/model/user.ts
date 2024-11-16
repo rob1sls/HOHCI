@@ -23,4 +23,6 @@ export class User {
     birthDate: string;
     joinDate: string;
     dateLastModified: string;
+    reportExp: number;
+    reporter: boolean;
 }

@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.container {
+    min-height: 100vh; /* Hauteur minimale pour occuper toute la page */
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex-grow: 1;
+}
+
+.timeline-posts {
+    width: 100%;
+    /* Supprimez overflow-y: auto ici si présent */
+}
+
+mat-dialog-content {
+    min-width: 300px;
+}
+
+
+.row2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    padding: 0 10rem; /* Ajoute des marges à gauche et à droite */
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #0d6efd;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #0d6efd;
+    transform: translateY(0);
+}

@@ -9,4 +9,5 @@ export class UpdateUserInfo {
     workplace: string;
     countryName: string;
     birthDate: string;
+    reportExp: number;
 }

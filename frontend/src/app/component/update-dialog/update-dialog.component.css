@@ -1,0 +1,18 @@
+mat-dialog-content {
+    width: 1200px;
+    font-size: 18px; /* Ajustez la taille de la police comme souhaité */
+
+}
+
+.mat-dialog-content .level-1 {
+    padding-left: 20px;  /* Première tabulation */
+  }
+  
+  .mat-dialog-content .level-2 {
+    padding-left: 40px;  /* Deuxième tabulation, plus décalée */
+  }
+  
+  .mat-dialog-content .level-3 {
+    padding-left: 60px;  /* Troisième tabulation, encore plus décalée */
+  }
+  
