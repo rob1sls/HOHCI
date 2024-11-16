@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-11T17:04:19+0100",
+    date = "2024-11-16T20:52:12+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 17.0.12 (Oracle Corporation)"
 )
 @Component
@@ -42,6 +42,9 @@ public class MapstructMapperUpdateImpl implements MapstructMapperUpdate {
         }
         if ( updateUserInfoDto.getWorkplace() != null ) {
             user.setWorkplace( updateUserInfoDto.getWorkplace() );
+        }
+        if ( updateUserInfoDto.getReportExp() != null ) {
+            user.setReportExp( updateUserInfoDto.getReportExp() );
         }
         if ( updateUserInfoDto.getBirthDate() != null ) {
             user.setBirthDate( updateUserInfoDto.getBirthDate() );

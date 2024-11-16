@@ -44,6 +44,8 @@ public class UpdateUserInfoDto {
     @Size(max = 64)
     private String countryName;
 
+    private Integer reportExp;
+
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

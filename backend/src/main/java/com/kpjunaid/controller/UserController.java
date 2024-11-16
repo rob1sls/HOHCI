@@ -57,7 +57,9 @@ public class UserController {
 
     @PostMapping("/account/update/info")
     public ResponseEntity<?> updateUserInfo(@RequestBody @Valid UpdateUserInfoDto updateUserInfoDto) {
+        System.out.println("Dans usercontroller" + updateUserInfoDto.getReportExp());
         User updatedUser = userService.updateUserInfo(updateUserInfoDto);
+        
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 

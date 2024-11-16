@@ -7,6 +7,7 @@ import com.kpjunaid.entity.Comment;
 import com.kpjunaid.entity.Post;
 import com.kpjunaid.entity.User;
 import com.kpjunaid.response.CommentResponse;
+import com.kpjunaid.dto.ReportPostRequest;
 import com.kpjunaid.dto.TagDto;
 import com.kpjunaid.entity.Tag;
 import com.kpjunaid.exception.EmptyPostException;
@@ -119,6 +120,12 @@ public class PostController {
         postService.likePost(postId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/posts/{postId}/report")
+    public ResponseEntity<?> reportPost(@PathVariable("postId") Long postId, @RequestBody ReportPostRequest request) {
+        System.out.println("Réception du hatefultype" + request.getHatefulType());
+        int exp = postService.reportPost(postId, request.getHatefulType());
+        return new ResponseEntity<>(exp, HttpStatus.OK);    }
 
     @PostMapping("/posts/{postId}/unlike")
     public ResponseEntity<?> unlikePost(@PathVariable("postId") Long postId) {

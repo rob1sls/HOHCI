@@ -2,6 +2,8 @@ package com.kpjunaid.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kpjunaid.enumeration.HatefulType;
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +33,14 @@ public class Post {
 
     @Column(nullable = false)
     private Boolean isTypeShare;
+
+    @Enumerated(EnumType.STRING) // Utilise les noms des constantes (ACTIVE, INACTIVE, etc.)
+    @Column(nullable = false)   // Rend la colonne obligatoire
+    private HatefulType hatefulType;
+
+
+    @Column(nullable = false)
+    private Boolean isReported = false;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;

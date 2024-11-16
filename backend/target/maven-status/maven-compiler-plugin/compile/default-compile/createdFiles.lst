@@ -13,6 +13,7 @@ com\kpjunaid\service\CommentServiceImpl.class
 com\kpjunaid\dto\ResetPasswordDto$ResetPasswordDtoBuilder.class
 com\kpjunaid\exception\CommentNotFoundException.class
 com\kpjunaid\response\ErrorResponse$ErrorResponseBuilder.class
+com\kpjunaid\dto\ReportPostRequest$ReportPostRequestBuilder.class
 com\kpjunaid\mapper\MapstructMapperUpdate.class
 com\kpjunaid\filter\JwtAuthorizationFilter.class
 com\kpjunaid\exception\CountryExistsException.class
@@ -26,6 +27,7 @@ com\kpjunaid\SocialAppApplication.class
 com\kpjunaid\error\ValidationError$ValidationErrorBuilder.class
 com\kpjunaid\service\CountryServiceImpl.class
 com\kpjunaid\service\PostService.class
+com\kpjunaid\dto\ReportPostRequest.class
 com\kpjunaid\controller\PostController.class
 com\kpjunaid\exception\EmptyCommentException.class
 com\kpjunaid\entity\Comment$CommentBuilder.class
@@ -100,6 +102,7 @@ com\kpjunaid\response\PostResponse$PostResponseBuilder.class
 com\kpjunaid\service\CommentService.class
 com\kpjunaid\service\UserService.class
 com\kpjunaid\exception\PostNotFoundException.class
+com\kpjunaid\enumeration\HatefulType.class
 com\kpjunaid\annotation\ValidPassword.class
 com\kpjunaid\annotation\PasswordRepeatEqual.class
 com\kpjunaid\service\CustomUserDetailService.class

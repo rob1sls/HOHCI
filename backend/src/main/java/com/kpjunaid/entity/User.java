@@ -59,6 +59,9 @@ public class User {
     @Column(length = 256)
     private String coverPhoto;
 
+    @Column
+    private Integer reportExp;
+
     @Column(length = 32, nullable = false)
     private String role;
 
@@ -67,6 +70,7 @@ public class User {
     private Boolean enabled;
     private Boolean accountVerified;
     private Boolean emailVerified;
+    private Boolean reporter;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthDate;

@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUserInfo(UpdateUserInfoDto updateUserInfoDto) {
         User authUser = getAuthenticatedUser();
+        System.out.println("Exp dans UserServie" + authUser.getReportExp());
         if (updateUserInfoDto.getCountryName() != null) {
             Country selectedUserCountry = countryService.getCountryByName(updateUserInfoDto.getCountryName());
             authUser.setCountry(selectedUserCountry);
@@ -163,7 +164,7 @@ public class UserServiceImpl implements UserService {
             throw new InvalidOperationException();
         }
     }
-
+    
     @Override
     public User verifyEmail(String token) {
         String targetEmail = jwtTokenService.getSubjectFromToken(token);
@@ -173,7 +174,7 @@ public class UserServiceImpl implements UserService {
         targetUser.setDateLastModified(new Date());
         return userRepository.save(targetUser);
     }
-
+    
     @Override
     public User updateProfilePhoto(MultipartFile profilePhoto) {
         User targetUser = getAuthenticatedUser();
@@ -219,7 +220,7 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.save(targetUser);
     }
-
+    
     @Override
     public void forgotPassword(String email) {
         try {
@@ -238,7 +239,7 @@ public class UserServiceImpl implements UserService {
         targetUser.setPassword(passwordEncoder.encode(resetPasswordDto.getPassword()));
         return userRepository.save(targetUser);
     }
-
+    
     @Override
     public void deleteUserAccount() {
         User authUser = getAuthenticatedUser();

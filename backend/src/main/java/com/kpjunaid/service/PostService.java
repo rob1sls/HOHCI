@@ -23,10 +23,12 @@ public interface PostService {
     void deletePostPhoto(Long postId);
     void likePost(Long postId);
     void unlikePost(Long postId);
+    void reportPost(Long postId);
     Comment createPostComment(Long postId, String content);
     Comment updatePostComment(Long commentId, Long postId, String content);
     void deletePostComment(Long commentId, Long postId);
     Post createPostShare(String content, Long postShareId);
     Post updatePostShare(String content, Long postShareId);
     void deletePostShare(Long postShareId);
+    int reportPost(Long postId, String hatefulType);
 }

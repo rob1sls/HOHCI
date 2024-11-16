@@ -103,6 +103,7 @@ public class PostServiceImpl implements PostService {
         newPost.setSharedPost(null);
         newPost.setDateCreated(new Date());
         newPost.setDateLastModified(new Date());
+        newPost.setIsReported(false);
 
         if (postPhoto != null && postPhoto.getSize() > 0) {
             String uploadDir = environment.getProperty("upload.post.images");
@@ -278,6 +279,76 @@ public class PostServiceImpl implements PostService {
             throw new InvalidOperationException();
         }
     }
+
+    @Override
+    public void reportPost(Long postId) {
+        Post targetPost = getPostById(postId);
+        User authUser = userService.getAuthenticatedUser();
+        System.out.println("targetPost recupéré et " + targetPost.getIsReported());
+        if (!targetPost.getIsReported() || targetPost.getIsReported() == null) {
+            targetPost.setIsReported(true);
+            System.out.println("Va save la modif");
+            postRepository.save(targetPost);  
+            System.out.println("reportPost done");
+            authUser.setReportExp(authUser.getReportExp() + 10);
+        }
+        else if (targetPost.getIsReported() == true){
+            System.out.println("reportPost done");
+            authUser.setReportExp(authUser.getReportExp() + 10);
+            ;
+        } 
+        else {
+            throw new InvalidOperationException();
+        }
+    }
+
+    @Override
+    public int reportPost(Long postId, String hatefulType) {
+        Post targetPost = getPostById(postId);
+        User authUser = userService.getAuthenticatedUser();
+        targetPost.setIsReported(true);
+            postRepository.save(targetPost);
+        int exp = 0;
+        String hatefulTypes = "";
+        if(hatefulType.equals("offensivelanguage")){
+            hatefulTypes = "OFFENSIVE";
+
+        }else if(hatefulType.equals("hatespeech")){
+            hatefulTypes = "HATEFUL";
+        }
+
+        System.out.println(hatefulTypes);
+        System.out.println(targetPost.getHatefulType().name());
+
+        if(!targetPost.getIsReported()){
+
+            if(hatefulTypes.equals(targetPost.getHatefulType().name())){ 
+                exp = 10;
+            } 
+            
+            else if (!hatefulTypes.equals(targetPost.getHatefulType().name()) && !targetPost.getHatefulType().name().equals("NOT")) {
+                exp = 5;
+            }
+             else {
+                if (authUser.getReportExp() > 5){
+                    exp = -5;
+                }
+                else {
+                    exp = -authUser.getReportExp() ;
+                }
+            }
+
+            System.out.println("exp = " + exp);
+
+            return exp;
+        }
+        else {
+
+            return 0;
+        }
+        
+    }
+
 
     @Override
     public Comment createPostComment(Long postId, String content) {
