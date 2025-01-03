@@ -10,7 +10,7 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # ID of the user who should follow everyone
-follower_id = 8
+follower_id = 766
 
 # Fetch all other user IDs except for user 8
 cursor.execute("SELECT id FROM users WHERE id != %s", (follower_id,))

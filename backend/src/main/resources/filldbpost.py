@@ -15,19 +15,25 @@ cursor = connection.cursor()
 
 # Fonction pour mapper le type de langage haineux
 def map_hateful_type(value):
-    if value.lower().strip() in ["offensive language"]:
-        return "OFFENSIVE"
-    elif value.lower().strip() in ["hate speech", "hate speech and offensive language"]:
-        return "HATEFUL"
+    if value.lower().strip() in ["Racism"]:
+        return "RACISM"
+    elif value.lower().strip() in ["sexualContent"]:
+        return "SEXUAL"
+    elif value.lower().strip() in ["Religious"]:
+        return "RELIGIOUS"
+    elif value.lower().strip() in ["Other"]:
+        return "POLITICAL"  
     else:
         return "NOT"
 
-cursor.execute("SELECT id FROM users WHERE id BETWEEN 9 AND 100")
-valid_author_ids = [row[0] for row in cursor.fetchall()]
-
+cursor.execute("SELECT id, first_name, last_name FROM users")
+valid_authors = cursor.fetchall()
+valid_author_ids = [row[0] for row in valid_authors]
+valid_names = [row[1] for row in valid_authors]
+valid_fornames = [row[2] for row in valid_authors]
 
 # Chemin vers le fichier CSV
-csv_file_path = "src/main/resources/tweets.csv"
+csv_file_path = "src/main/resources/filtered_tweets.csv"
 
 # Lire le fichier CSV
 with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
@@ -42,6 +48,10 @@ with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
             print(f"Ligne mal formatée : {row}")
             continue  # Ignore les lignes incorrectes
 
+        if '<user>' in content:
+            random_username = random.choice(valid_names) + " " + random.choice(valid_fornames)
+            content = content.replace('<user>', random_username)
+
         # Valeurs par défaut
         date_created = datetime.now()
         date_last_modified = date_created
@@ -51,13 +61,14 @@ with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
         is_type_share = 0
         reported = False
         user_id = random.choice(valid_author_ids)  # Random valid author_id
+        is_reported = False
 
         # Insertion SQL
         sql = """
-        INSERT INTO Posts (content, date_created, date_last_modified, like_count, author_id, comment_count, share_count, is_type_share, reported, hateful_type)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO Posts (content, date_created, date_last_modified, like_count, author_id, comment_count, share_count, is_type_share, reported, hateful_type, is_reported)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
-        cursor.execute(sql, (content, date_created, date_last_modified, like_count, user_id, comment_count, share_count, is_type_share, reported, hateful_type))
+        cursor.execute(sql, (content, date_created, date_last_modified, like_count, user_id, comment_count, share_count, is_type_share, reported, hateful_type, is_reported))
 
 # Sauvegarder les transactions
 connection.commit()

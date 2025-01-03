@@ -305,9 +305,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public int reportPost(Long postId, String hatefulType) {
         Post targetPost = getPostById(postId);
+        
+        if(!targetPost.getIsReported()){
+
         User authUser = userService.getAuthenticatedUser();
         targetPost.setIsReported(true);
-            postRepository.save(targetPost);
+        postRepository.save(targetPost);
+        System.out.println("reportPost done");
+        System.out.println(targetPost.getIsReported());
+
         int exp = 0;
         String hatefulTypes = "";
         if(hatefulType.equals("offensivelanguage")){
@@ -320,7 +326,6 @@ public class PostServiceImpl implements PostService {
         System.out.println(hatefulTypes);
         System.out.println(targetPost.getHatefulType().name());
 
-        if(!targetPost.getIsReported()){
 
             if(hatefulTypes.equals(targetPost.getHatefulType().name())){ 
                 exp = 10;
