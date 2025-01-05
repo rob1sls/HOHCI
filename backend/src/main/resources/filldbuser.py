@@ -12,7 +12,7 @@ cursor = connection.cursor()
 faker = Faker()
 
 # Insert 150 users with random names, passwords, and profile pictures
-"""
+
 for _ in range(150):
     first_name = faker.first_name()
     last_name = faker.last_name()
@@ -20,12 +20,12 @@ for _ in range(150):
     password = faker.password()  # Generate a random password
     profile_photo = faker.image_url()  # Generate a random profile photo URL
     
-    sql = """"""
+    sql = """
     INSERT INTO users (first_name, last_name, email, password, account_verified, email_verified, enabled, role, report_exp, profile_photo)
     VALUES (%s, %s, %s, %s, b'1', b'1', b'1', 'user', 1, %s)
-    """"""
+    """
     cursor.execute(sql, (first_name, last_name, email, password, profile_photo))
-"""
+
 
 first_name = "John"
 last_name = "Doe"
