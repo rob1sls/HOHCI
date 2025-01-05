@@ -42,6 +42,10 @@ public class Post {
     @Column(nullable = false)
     private Boolean isReported = false;
 
+    @Column(nullable = false)
+    private Boolean reported = false;
+
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateCreated;
 
