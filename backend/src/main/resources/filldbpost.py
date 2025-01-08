@@ -35,7 +35,7 @@ valid_names = [row[1] for row in valid_authors]
 valid_fornames = [row[2] for row in valid_authors]
 
 # Chemin vers le fichier CSV
-csv_file_path = "src/main/resources/tweets_tests.csv"
+csv_file_path = "src/main/resources/tweets_both.csv"
 
 # Lire le fichier CSV
 with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
