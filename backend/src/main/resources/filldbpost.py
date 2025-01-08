@@ -7,7 +7,7 @@ import random
 # Connexion à la base de données
 connection = mysql.connector.connect(
     host="localhost",
-    user="my_user",
+    user="root",
     password="handsonhcidb",
     database="my_database"
 )

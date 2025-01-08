@@ -4,7 +4,7 @@ from faker import Faker
 # Connect to MySQL database
 connection = mysql.connector.connect(
     host="localhost",
-    user="my_user",
+    user="root",
     password="handsonhcidb",
     database="my_database"
 )
