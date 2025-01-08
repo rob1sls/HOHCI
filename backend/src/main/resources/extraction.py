@@ -15,7 +15,7 @@ cursor.execute("SELECT * FROM users WHERE alreadyused = 1")
 users = cursor.fetchall()
 
 # Nom du fichier CSV de sortie
-csv_file_path = "/home/urbaninteraction/result.csv"
+csv_file_path = "/home/urbaninteraction/HOHCI/backend/src/main/resources/result.csv"
 
 # Récupération des noms de colonnes (si nécessaire)
 columns = [desc[0] for desc in cursor.description]
