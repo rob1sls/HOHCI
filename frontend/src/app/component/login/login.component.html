@@ -1,46 +1,47 @@
 <div class="mt-100 me-auto ms-auto pb-5" style="width: 500px;">
-	<mat-card class="mat-elevation-z3">
-		<mat-card-title class="text-center ps-3 pt-5 pe-3">Login To Your Account</mat-card-title>
+    <mat-card class="mat-elevation-z3">
+        <mat-card-title class="text-center ps-3 pt-5 pe-3">Welcome to our social app</mat-card-title>
 
-		<mat-card-content class="p-4">
-			<form [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
-				<mat-form-field class="w-100 pb-2" appearance="outline">
-					<mat-label>Email</mat-label>
-					<input type="text" matInput formControlName="email" placeholder="Ex. johndoe@example.com">
-					<mat-error *ngIf="email.hasError('required')">
-						Email is <b>required</b>
-					</mat-error>
-					<mat-error *ngIf="email.hasError('email') || email.hasError('serverError')">
-						Please, enter a valid email address
-					</mat-error>
-				</mat-form-field>
+        <mat-card-content class="p-4">
+            <form [formGroup]="loginFormGroup" (ngSubmit)="handleLogin(0)">
+                <!-- Contenu spécifique à group1 -->
+                <div *ngIf="group == '1'">
+                    <!-- Vous pouvez ajouter du contenu personnalisé ici pour le groupe 1 -->
+                    <p>Welcome to Group 1!</p>
+                </div>
 
-				<mat-form-field class="w-100 pb-2" appearance="outline">
-					<mat-label>Password</mat-label>
-					<input type="password" matInput formControlName="password" placeholder="*************">
-					<mat-error *ngIf="password.hasError('required')">
-						Password is <b>required</b>
-					</mat-error>
-					<mat-error *ngIf="password.hasError('minlength', 'maxlength')">
-						Password must be 6 to 32 characters long
-					</mat-error>
-					<mat-error *ngIf="password.hasError('serverError')">
-						Password has to be alpha numeric and must include uppercase, lowercase, and special characters
-					</mat-error>
-				</mat-form-field>
+                <!-- Contenu spécifique à group2 -->
+                <div *ngIf="group == '2'">
+                    <mat-dialog-content>
+                        <p>A badge system is now available! Gain experience by reporting hateful content to unlock new, amazing badges next to your name. Only visible by your friends and followers.</p>
+                        <ul>
+                            <li class="level-1">Level 1 : <mat-icon style="color: gray;">shield</mat-icon></li>
+                            <li class="level-1">Level 2 : <mat-icon style="color: gold;">shield</mat-icon></li>
+                        </ul>
+                    </mat-dialog-content>
+                </div>
 
-				<a class="d-inline-block text-secondary text-decoration-none cursor-pointer mt-3" (click)="openForgotPasswordDialog($event)">
-					Forgot Password?
-				</a>
+                <!-- Contenu spécifique à group3 -->
+                <div *ngIf="group == '3'">
+                    <mat-dialog-content>
+                        <p>A badge system is now available! Gain experience by reporting hateful content to unlock new, amazing badges next to your name.</p>
+                        <ul>
+                            <li class="level-1">Level 1 : <mat-icon style="color: gray;">shield</mat-icon></li>
+                            <li class="level-1">Level 2 : <mat-icon style="color: gold;">shield</mat-icon></li>
+                        </ul>
+                    </mat-dialog-content>
+                </div>
 
-				<mat-card-actions align="end" style="margin-top: -35px; padding-right: 8px;">
-					<button mat-raised-button color="primary" type="submit">Login</button>
-				</mat-card-actions>
-			</form>
-		</mat-card-content>
+                <!-- Formulaire de connexion -->
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="submit">Continue</button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
 
-		<mat-card-footer *ngIf="submittingForm == true">
-			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-		</mat-card-footer>
-	</mat-card>
+        <!-- Affichage de la barre de progression lors de la soumission du formulaire -->
+        <mat-card-footer *ngIf="submittingForm == true">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
 </div>

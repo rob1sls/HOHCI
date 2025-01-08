@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 import { AppConstants } from 'src/app/common/app-constants';
 import { Notification } from 'src/app/model/notification';
 import { User } from 'src/app/model/user';
@@ -23,6 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	authUser: User;
 	isUserLoggedIn: boolean = false;
 	isProfilePage: boolean = false;
+	comingFromProfile: boolean = false; // Ajout pour surveiller la navigation depuis /profile
+
 	notifications: Notification[] = [];
 	hasUnseenNotification: boolean = false;
 	resultPage: number = 1;
@@ -30,6 +32,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	hasMoreNotifications: boolean = false;
 	fetchingResult: boolean = false;
 	defaultProfilePhotoUrl = environment.defaultProfilePhotoUrl;
+	showRewardMessage: boolean = false; // Ajouté pour afficher le message de récompense
+	rewardMessageTimeout: any; // Pour gérer le délai d'affichage
+	private reportExpListener: any; // Interval pour surveiller reportExp
+	nevershowagain: boolean = false; // Pour ne pas afficher le message de récompense à nouveau
+
 	
 	private subscriptions: Subscription[] = [];
 
@@ -37,6 +44,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 		private authService: AuthService,
 		private notificationService: NotificationService,
 		private matDialog: MatDialog,
+		private router: Router, // Injection du Router
+
 		private matSnackbar: MatSnackBar) { }
 
 	ngOnInit(): void {
@@ -49,7 +58,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 		if (this.isUserLoggedIn) {
 			this.loadNotifications(1);
+
+		
 		}
+
+		this.subscriptions.push(
+			this.router.events
+				.pipe(filter(event => event instanceof NavigationEnd))
+				.subscribe((event: NavigationEnd) => {
+					this.comingFromProfile = this.isProfilePage; // Stocke l'état précédent
+					this.isProfilePage = event.url === '/profile'; // Met à jour l'état actuel
+				})
+		);
+
+		this.startReportExpListener();
 
 		this.authService.logoutSubject.subscribe(loggedOut => {
 			if (loggedOut) {
@@ -135,5 +157,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
 				})
 			);
 		}
+	}
+
+	startReportExpListener(): void {
+		if (!this.nevershowagain) {
+		this.reportExpListener = setInterval(() => {
+			if (this.authUser?.reportExp >= 10 && !this.showRewardMessage) {
+				this.handleExperienceChange();
+			}
+		}, 500); // Vérifie toutes les 500 ms
+	}}
+
+	handleExperienceChange(): void {
+		this.showRewardMessage = true;
+		this.rewardMessageTimeout = setTimeout(() => {
+			this.showRewardMessage = false;
+		}, 5000); // Afficher pendant 2 secondes
+		this.nevershowagain = true; // Indiquer que la récompense a été affichée
+		this.stopReportExpListener(); // Arrêter de surveiller l'expérience
+	}
+
+	stopReportExpListener(): void {
+		clearInterval(this.reportExpListener);
 	}
 }

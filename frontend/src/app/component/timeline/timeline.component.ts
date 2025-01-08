@@ -28,7 +28,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     timelineTagList: Tag[] = [];
     noPost: boolean = false;
     resultPage: number = 1;
-    resultSize: number = 50;
+    resultSize: number = 20;
     hasMoreResult: boolean = true;
     fetchingResult: boolean = false;
     isTaggedPostPage: boolean = false;
@@ -40,12 +40,16 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
 
     private subscriptions: Subscription[] = [];
+
+    userId: string;
   
 
     constructor(
         private authService: AuthService,
         private timelineService: TimelineService,
         private postService: PostService,
+        private route: ActivatedRoute,
+
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private matSnackbar: MatSnackBar,
@@ -70,6 +74,11 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
             this.loadTimelineTags();
         }
+
+        this.route.params.subscribe(params => {
+            this.userId = params['userId'];
+            console.log('User ID:', this.userId);
+        });
     }
 
     ngOnDestroy(): void {
@@ -82,8 +91,15 @@ export class TimelineComponent implements OnInit, OnDestroy {
     // Scroll event handler for infinite scrolling
     onScroll(event: any): void {
         const element = event.target;
-        if (element.scrollHeight - element.scrollTop === element.clientHeight && this.hasMoreResult && !this.fetchingResult) {
-            this.isTaggedPostPage ? this.loadTaggedPosts(this.targetTagName, this.resultPage) : this.loadTimelinePosts(this.resultPage);
+        const isBottom = element.scrollHeight === element.scrollTop + element.clientHeight;
+    
+        if (isBottom && !this.fetchingResult && this.hasMoreResult) {
+            this.fetchingResult = true;
+            if (this.isTaggedPostPage) {
+                this.loadTaggedPosts(this.targetTagName, this.resultPage);
+            } else {
+                this.loadTimelinePosts(this.resultPage);
+            }
         }
     }
 
@@ -178,4 +194,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
         });
       }
 
+
+   
 }

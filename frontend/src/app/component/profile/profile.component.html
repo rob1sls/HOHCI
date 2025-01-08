@@ -60,7 +60,7 @@
 							</a>
 						</p>
 
-						<div class="exp-bar mt-4">
+						<div *ngIf="showexp" class="exp-bar mt-4">
 							
 					
 
@@ -68,10 +68,21 @@
 								mode="determinate" 
 								[value]="calculateExpPercentage(profileUser.reportExp)"
 								>
+								
 							</mat-progress-bar>
+
+							
 
 							<div class="text-center mt-1">
 								<span>{{ profileUser.reportExp }} / {{ getExpThreshold() }} EXP</span>
+								
+							</div>
+
+							<div class="text-center mt-1" >
+								Next Reward : 
+								<mat-icon *ngIf="true" 
+									  [ngStyle]="{'color': getShieldColornext()}" 
+									 >shield</mat-icon>
 							</div>
 
 

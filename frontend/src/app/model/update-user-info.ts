@@ -10,4 +10,7 @@ export class UpdateUserInfo {
     countryName: string;
     birthDate: string;
     reportExp: number;
+    numberofReport: number;
+    isUsed:boolean;
+    group: number;
 }

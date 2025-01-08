@@ -25,4 +25,9 @@ export class User {
     dateLastModified: string;
     reportExp: number;
     reporter: boolean;
+    numberofReport: number;
+    isUsed: boolean;
+    studyGroup: number;
+    alreadyused: boolean;
+
 }

@@ -13,31 +13,109 @@
 
 
 
-    <div class="row2 justify-content-center mt-5" (click)="openUpdateDialog()">
-        <button > Update Available! Click to learn more. </button> 
-    </div>
     
     <div class="container">
         <div class="row justify-content-center mt-5">
-            <div class="col-8">
+            <div class="col-8 justify-content-center">
                 <h3 class="mat-h3 fw-500" *ngIf="isTaggedPostPage">
                     Posts with tag <i>#{{ targetTagName }}</i>
                 </h3>
-
+    
                 <!-- Timeline posts container sans overflow-y -->
                 <div class="timeline-posts">
                     <p class="fw-500 text-center" *ngIf="noPost">No Post Found</p>
-                    <app-post *ngFor="let postResponse of timelinePostResponseList" 
+                    
+                    <app-post *ngFor="let postResponse of timelinePostResponseList; let i = index" 
                               id="{{'profilePost' + postResponse.post.id}}" 
                               [postResponse]="postResponse" 
                               [isDetailedPost]="false">
-                    </app-post>
-                </div>
 
+                    </app-post>
+
+                    <div>
+                        <p style="color: brown;"><strong> Remember this, the code for the post Interview is : Aufmerksamkeitsdefizit </strong></p>
+                    </div>
+
+                    <app-post *ngFor="let postResponse of timelinePostResponseList; let i = index" 
+                              id="{{'profilePost' + postResponse.post.id}}" 
+                              [postResponse]="postResponse" 
+                              [isDetailedPost]="false">
+
+                    </app-post>
+
+                    
+                    <div>
+                        <p style="color: brown;"><strong> Remember this, the code for the post Interview is : Aufmerksamkeitsdefizit </strong></p>
+                    </div>
+                    
+                    <app-post *ngFor="let postResponse of timelinePostResponseList; let i = index" 
+                              id="{{'profilePost' + postResponse.post.id}}" 
+                              [postResponse]="postResponse" 
+                              [isDetailedPost]="false">
+
+                    </app-post>
+
+                    
+                    <div>
+                        <p style="color: brown;"><strong> Remember this, the code for the post Interview is : Aufmerksamkeitsdefizit </strong></p>
+                    </div>
+
+                    <app-post *ngFor="let postResponse of timelinePostResponseList; let i = index" 
+                              id="{{'profilePost' + postResponse.post.id}}" 
+                              [postResponse]="postResponse" 
+                              [isDetailedPost]="false">
+
+                    </app-post>
+
+                    
+                    <div>
+                        <p style="color: brown;"><strong> Remember this, the code for the post Interview is : Aufmerksamkeitsdefizit </strong></p>
+                    </div>
+
+                    <app-post *ngFor="let postResponse of timelinePostResponseList; let i = index" 
+                              id="{{'profilePost' + postResponse.post.id}}" 
+                              [postResponse]="postResponse" 
+                              [isDetailedPost]="false">
+
+                    </app-post>
+
+                    
+                    <div>
+                        <p style="color: brown;"><strong> Remember this, the code for the post Interview is : Aufmerksamkeitsdefizit </strong></p>
+                    </div>
+
+                    <app-post *ngFor="let postResponse of timelinePostResponseList; let i = index" 
+                              id="{{'profilePost' + postResponse.post.id}}" 
+                              [postResponse]="postResponse" 
+                              [isDetailedPost]="false">
+
+                    </app-post>
+
+                    
+                    <div>
+                        <p style="color: brown;"><strong> Remember this, the code for the post Interview is : Aufmerksamkeitsdefizit </strong></p>
+                    </div>
+
+
+
+                </div>
+    
                 <div class="text-center mb-4" *ngIf="fetchingResult">
                     <mat-spinner style="transform: scale(0.3);" class="text-center ms-auto me-auto"></mat-spinner>
+                </div>
+    
+                <div style="display: flex; justify-content: center; align-items: center; padding-bottom: 20px;"> 
+                    <button mat-raised-button color="primary" class="mat-btn-lg rounded-pill" style="margin-bottom:20px" (click)="openUpdateDialog()">End the study</button>
                 </div>
             </div>
         </div>
     </div>
+    
+    
+
+    <!-- Bouton centrée qui permet de faire afficher un pop up avec un lien gform-->
+    
+
+    
+
 </div>

@@ -6,6 +6,10 @@
 	
 	<span class="example-spacer"></span>
 
+	<div *ngIf="showRewardMessage && !isProfilePage" class="reward-message">
+		<span>🎉 100 EXP ! Collect your reward here -></span>
+	</div>
+
 	<a href="/profile" class="rounded-pill ps-2 pt-1 pe-3 pb-1 text-white text-decoration-none" *ngIf="isUserLoggedIn">
 		<span class="rounded-circle d-inline-block align-middle centered-bg-image"
 			style="z-index: inherit; width: 30px; height: 30px; background-color: white; background-image: url('{{defaultProfilePhotoUrl}}');"></span>
@@ -14,6 +18,10 @@
 
 	<a mat-raised-button class="me-3" *ngIf="!isUserLoggedIn" href="/login">Login</a>
 	<a mat-raised-button *ngIf="!isUserLoggedIn" href="/signup">Signup</a>
+
+
+
+
 
 	<div *ngIf="isUserLoggedIn">
 		<button mat-icon-button (click)="openSearchDialog()">
@@ -116,6 +124,10 @@
 		<button mat-icon-button [matMenuTriggerFor]="mainMenu">
 			<mat-icon>more_vert</mat-icon>
 		</button>
+		
+
+
+
 		<mat-menu #mainMenu="matMenu" xPosition="before">
 			<a mat-menu-item href="/profile">Profile</a>
 			<a mat-menu-item href="/settings">Settings</a>

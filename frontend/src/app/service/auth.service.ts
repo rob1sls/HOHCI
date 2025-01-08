@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../model/user';
 import { UserLogin } from '../model/user-login';
 import { UserSignup } from '../model/user-signup';
+import { LoginResponseDto } from '../model/LoginResponseDto';
 
 @Injectable({
 	providedIn: 'root'
@@ -26,9 +27,10 @@ export class AuthService {
 		return this.httpClient.post<HttpResponse<any> | HttpErrorResponse>(`${this.host}/signup`, userSignup);
 	}
 
-	login(userLogin: UserLogin): Observable<HttpResponse<User> | HttpErrorResponse> {
-		return this.httpClient.post<User>(`${this.host}/login`, userLogin, { observe: 'response' });
+	login(userLogin: UserLogin): Observable<HttpResponse<LoginResponseDto> | HttpErrorResponse> {
+		return this.httpClient.post<LoginResponseDto>(`${this.host}/login`, userLogin, { observe: 'response' });
 	}
+
 
 	logout(): void {
 		this.authToken = null;

@@ -30,6 +30,7 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './component/login/login.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './component/header/header.component';
 import { SignupComponent } from './component/signup/signup.component';

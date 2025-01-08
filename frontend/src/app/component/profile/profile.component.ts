@@ -39,6 +39,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 	expBorderEnabled = false;
 
 
+	showexp : boolean = true;
+
+
 	private subscriptions: Subscription[] = [];
 
 	constructor(
@@ -56,6 +59,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 			this.loadingProfile = true;
 			this.authUser = this.authService.getAuthUserFromCache();
 
+
+
+			console.log(this.authUser.studyGroup);
+			console.log(this.authUser.alreadyused);
+
 			if (this.activatedRoute.snapshot.paramMap.get('userId') === null) {
 				this.isProfileViewerOwner = true;
 				this.profileUserId = this.authService.getAuthUserId();
@@ -64,6 +72,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 			}
 
 			console.log(this.authUser);
+
+			if (this.authUser.studyGroup == 1)  {
+				this.showexp = false;
+			}
 
 
 			this.subscriptions.push(
@@ -296,5 +308,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
 			return 'gray'; // Level 1 color
 		}
 		return 'brown'; // Default color if below level 1
+	}
+
+
+	getShieldColornext(): string {
+		if (this.profileUser.reportExp >= 250) {
+			return 'white'; // Level 2 color
+		} else if (this.profileUser.reportExp >= 100) {
+			return 'gold'; // Level 1 color
+		} 
+		return 'gray'; // Default color if below level 1
 	}
 }

@@ -21,7 +21,9 @@ import { UpdateUserInfo } from 'src/app/model/update-user-info';
 export class PostReportDialogComponent implements OnInit, OnDestroy {
 
   reportReasons: string[] = [
-    'Offensive language',
+    'Sexism',
+    'Racism',
+    'Discrimination',
     'Hate speech',
     'Other'
   ];
@@ -68,6 +70,23 @@ export class PostReportDialogComponent implements OnInit, OnDestroy {
       hatefulselectedReason = 'offensivelanguage';
 
     } 
+    else if (this.selectedReason[0] === 'Racism') {
+      hatefulselectedReason = 'racism';
+
+    }
+    else if (this.selectedReason[0] === 'Sexism') {
+      hatefulselectedReason = 'sexism';
+
+    }
+    else if (this.selectedReason[0] === 'Discrimination') {
+      hatefulselectedReason = 'discrimination';
+
+    }
+    else if (this.selectedReason[0] === 'Other') {
+      hatefulselectedReason = 'other';
+
+    }
+
     this.postService.reportedPost(this.dataPost.id, hatefulselectedReason).subscribe(
           (response: any) => {
           // Retrieve the current authenticated user
@@ -88,10 +107,13 @@ export class PostReportDialogComponent implements OnInit, OnDestroy {
             currentCity: currentUser.currentCity,
             eduInstitution: currentUser.eduInstitution,
             workplace: currentUser.workplace,
-            countryName: null,// Ensure this field is in the User model as well
+            countryName: null, // Ensure this field is in the User model as well
             birthDate: currentUser.birthDate,
-            reportExp: currentUser.reportExp
-        };
+            reportExp: currentUser.reportExp,
+            numberofReport: 0,
+            isUsed: false,
+            group: 0
+          };
 
           // Optionally, call userService to save the update in the database
           this.userService.updateUserInfo(updatedUserInfo).subscribe({
