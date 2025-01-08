@@ -15,12 +15,14 @@ cursor = connection.cursor()
 
 # Fonction pour mapper le type de langage haineux
 def map_hateful_type(value):
-    if value.lower().strip() in ["Racism"]:
+    return value
+    print(f"Value: {value}")
+    if value.lower().strip() in ["Racist"]:
         return "RACISM"
-    elif value.lower().strip() in ["sexualContent"]:
-        return "SEXUAL"
-    elif value.lower().strip() in ["Religious"]:
-        return "RELIGIOUS"
+    elif value.lower().strip() in ["sexistOrSexualContent"]:
+        return "SEXISM"
+    elif value.lower().strip() in ["Discrimination"]:
+        return "DISCRIMINATORY"
     elif value.lower().strip() in ["Other"]:
         return "POLITICAL"  
     else:
@@ -33,7 +35,7 @@ valid_names = [row[1] for row in valid_authors]
 valid_fornames = [row[2] for row in valid_authors]
 
 # Chemin vers le fichier CSV
-csv_file_path = "src/main/resources/filtered_tweets.csv"
+csv_file_path = "src/main/resources/tweets_tests.csv"
 
 # Lire le fichier CSV
 with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
@@ -44,6 +46,7 @@ with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
         try:
             content = row[0].strip()  # Contenu brut
             hateful_type = map_hateful_type(row[1])  # Type haineux
+            print(f"Hatefultype: {hateful_type}")
         except IndexError:
             print(f"Ligne mal formatée : {row}")
             continue  # Ignore les lignes incorrectes

@@ -72,6 +72,14 @@ public class User {
     private Boolean emailVerified;
     private Boolean reporter;
 
+    private Integer numberofreport;
+
+
+
+    private Boolean alreadyused;
+
+    private String studyGroup;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthDate;
 

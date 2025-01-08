@@ -42,8 +42,11 @@ public class Post {
     @Column(nullable = false)
     private Boolean isReported = false;
 
-    @Column(nullable = false)
-    private Boolean reported = false;
+    // Remplacement du champ `reported` par une liste d'IDs des utilisateurs qui ont signalé le post
+    @ElementCollection
+    @CollectionTable(name = "post_reports", joinColumns = @JoinColumn(name = "post_id"))
+    @Column(name = "user_id")
+    private List<Long> reportedByUsers = new ArrayList<>();
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

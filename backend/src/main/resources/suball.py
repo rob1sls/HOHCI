@@ -10,16 +10,23 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # ID of the user who should follow everyone
-follower_id = 766
 
-# Fetch all other user IDs except for user 8
-cursor.execute("SELECT id FROM users WHERE id != %s", (follower_id,))
-other_user_ids = [row[0] for row in cursor.fetchall()]
+# Récupérer les utilisateurs avec des IDs inférieurs à 6370
+cursor.execute("SELECT id FROM users WHERE id < 11619")
+lower_ids = cursor.fetchall()
 
-# Insert follow relationships where user 8 follows all other users
-for followed_id in other_user_ids:
-    sql = "INSERT INTO follow_users (follower_id, followed_id) VALUES (%s, %s)"
-    cursor.execute(sql, (follower_id, followed_id))
+# Récupérer les utilisateurs avec des IDs supérieurs à 6370
+cursor.execute("SELECT id FROM users WHERE id > 11619")
+higher_ids = cursor.fetchall()
+
+# Insérer toutes les relations de suivi
+for lower_id in lower_ids:
+    for higher_id in higher_ids:
+        try:
+            # Insérer la relation de suivi (follower_id suit followed_id)
+            cursor.execute("INSERT INTO follow_users (follower_id, followed_id) VALUES (%s, %s)", (lower_id[0], higher_id[0]))
+        except mysql.connector.IntegrityError as e:
+            print(f"Error inserting follower {lower_id[0]} following {higher_id[0]}: {e}")
 
 # Commit the transaction
 connection.commit()

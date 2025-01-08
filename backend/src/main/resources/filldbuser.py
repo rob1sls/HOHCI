@@ -13,7 +13,7 @@ faker = Faker()
 
 # Insert 150 users with random names, passwords, and profile pictures
 
-for _ in range(150):
+for _ in range(50):
     first_name = faker.first_name()
     last_name = faker.last_name()
     email = faker.email()
@@ -26,17 +26,6 @@ for _ in range(150):
     """
     cursor.execute(sql, (first_name, last_name, email, password, profile_photo))
 
-
-first_name = "John"
-last_name = "Doe"
-email = "johndoe@example.com"
-password = "Motdepasse!10"  # Generate a random password
-
-sql = """
-INSERT INTO users (first_name, last_name, email, password, account_verified, email_verified, enabled, role, report_exp)
-VALUES (%s, %s, %s, %s, b'1', b'1', b'1', 'user', 100)
-"""
-cursor.execute(sql, (first_name, last_name, email, password))
 # Commit the transactions
 connection.commit()
 

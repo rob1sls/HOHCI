@@ -15,4 +15,9 @@ public class LoginDto {
 
     @ValidPassword
     private String password;
+
+    private String studygroup;
+
+    
+
 }

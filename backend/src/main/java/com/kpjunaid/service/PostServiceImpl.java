@@ -8,6 +8,7 @@ import com.kpjunaid.dto.TagDto;
 import com.kpjunaid.entity.Tag;
 import com.kpjunaid.enumeration.NotificationType;
 import com.kpjunaid.repository.PostRepository;
+import com.kpjunaid.repository.UserRepository;
 import com.kpjunaid.response.PostResponse;
 import com.kpjunaid.util.FileNamingUtil;
 import com.kpjunaid.util.FileUploadUtil;
@@ -38,6 +39,8 @@ public class PostServiceImpl implements PostService {
     private final Environment environment;
     private final FileNamingUtil fileNamingUtil;
     private final FileUploadUtil fileUploadUtil;
+
+    private final UserRepository userRepository;
 
     @Override
     public Post getPostById(Long postId) {
@@ -281,78 +284,67 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void reportPost(Long postId) {
-        Post targetPost = getPostById(postId);
-        User authUser = userService.getAuthenticatedUser();
-        System.out.println("targetPost recupéré et " + targetPost.getIsReported());
-        if (!targetPost.getIsReported() || targetPost.getIsReported() == null) {
-            targetPost.setIsReported(true);
-            System.out.println("Va save la modif");
-            postRepository.save(targetPost);  
-            System.out.println("reportPost done");
-            authUser.setReportExp(authUser.getReportExp() + 10);
-        }
-        else if (targetPost.getIsReported() == true){
-            System.out.println("reportPost done");
-            authUser.setReportExp(authUser.getReportExp() + 10);
-            ;
-        } 
-        else {
-            throw new InvalidOperationException();
-        }
-    }
-
-    @Override
     public int reportPost(Long postId, String hatefulType) {
         Post targetPost = getPostById(postId);
-        
-        if(!targetPost.getIsReported()){
-
+    
         User authUser = userService.getAuthenticatedUser();
-        targetPost.setIsReported(true);
-        postRepository.save(targetPost);
-        System.out.println("reportPost done");
-        System.out.println(targetPost.getIsReported());
-
-        int exp = 0;
-        String hatefulTypes = "";
-        if(hatefulType.equals("offensivelanguage")){
-            hatefulTypes = "OFFENSIVE";
-
-        }else if(hatefulType.equals("hatespeech")){
-            hatefulTypes = "HATEFUL";
-        }
-
-        System.out.println(hatefulTypes);
-        System.out.println(targetPost.getHatefulType().name());
-
-
-            if(hatefulTypes.equals(targetPost.getHatefulType().name())){ 
-                exp = 10;
-            } 
+    
+        // Vérifier si l'utilisateur a déjà signalé ce post
+        if (!targetPost.getReportedByUsers().contains(authUser.getId())) {
             
-            else if (!hatefulTypes.equals(targetPost.getHatefulType().name()) && !targetPost.getHatefulType().name().equals("NOT")) {
+            // Ajouter l'utilisateur à la liste des utilisateurs qui ont signalé ce post
+            targetPost.getReportedByUsers().add(authUser.getId());
+            postRepository.save(targetPost);
+            
+            System.out.println("reportPost done");
+            System.out.println(hatefulType);
+    
+            // Déterminer le type de haine et l'XP associé
+            int exp = 0;
+            String hatefulTypes = "";
+    
+            if (hatefulType.equals("racism")) {
+                hatefulTypes = "RACISM";
+            } else if (hatefulType.equals("sexism")) {
+                hatefulTypes = "SEXISM";
+            } else if (hatefulType.equals("discrimination")) {
+                hatefulTypes = "DISCRIMINATION";
+            } else if (hatefulType.equals("hatespeech")) {
+                hatefulTypes = "HATESPEECH";
+            } else {
+                hatefulTypes = "NOT";
+            }
+    
+            System.out.println(hatefulTypes);
+            System.out.println(targetPost.getHatefulType().name());
+    
+            // Calculer l'XP en fonction du type de haine
+            if (hatefulTypes.equals(targetPost.getHatefulType().name())) {
+                exp = 10;
+            } else if (!hatefulTypes.equals(targetPost.getHatefulType().name()) && !targetPost.getHatefulType().name().equals("NOT")) {
                 exp = 5;
+            } else {
+                exp = 0;
             }
-             else {
-                if (authUser.getReportExp() > 5){
-                    exp = -5;
-                }
-                else {
-                    exp = -authUser.getReportExp() ;
-                }
-            }
-
+    
             System.out.println("exp = " + exp);
-
+    
+            // Mettre à jour l'expérience de l'utilisateur
+            if (authUser.getNumberofreport() == null) {
+                authUser.setNumberofreport(1);
+            } else {
+                authUser.setNumberofreport(authUser.getNumberofreport() + 1);
+            }
+            authUser.setReportExp(authUser.getReportExp() + exp);
+            userRepository.save(authUser);
+    
             return exp;
-        }
-        else {
-
+        } else {
+            // Si l'utilisateur a déjà signalé le post, retourner 0 (pas d'XP)
             return 0;
         }
-        
     }
+    
 
 
     @Override
@@ -477,5 +469,11 @@ public class PostServiceImpl implements PostService {
                 .post(post)
                 .likedByAuthUser(post.getLikeList().contains(authUser))
                 .build();
+    }
+
+    @Override
+    public void reportPost(Long postId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'reportPost'");
     }
 }

@@ -3,11 +3,14 @@ package com.kpjunaid.controller;
 import com.kpjunaid.common.AppConstants;
 import com.kpjunaid.common.UserPrincipal;
 import com.kpjunaid.dto.*;
+import com.kpjunaid.entity.Subject;
 import com.kpjunaid.entity.User;
+import com.kpjunaid.repository.UserRepository;
 import com.kpjunaid.response.PostResponse;
 import com.kpjunaid.response.UserResponse;
 import com.kpjunaid.service.JwtTokenService;
 import com.kpjunaid.service.PostService;
+import com.kpjunaid.service.SubjectService;
 import com.kpjunaid.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -27,26 +30,60 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final SubjectService subjectService;
     private final PostService postService;
     private final JwtTokenService jwtTokenService;
     private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    
+        @PostMapping("/signup")
+        public ResponseEntity<?> signup(@RequestBody @Valid SignupDto signupDto) {
+            User savedUser = userService.createNewUser(signupDto);
+            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        }
+    
+        @PostMapping("/login")
+        public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
+    
+    
+            System.out.println("Dans usercontroller" + loginDto.getEmail());
+            // le study group est le dernier elemetn de la chaine de caractere
+            String studygroup = loginDto.getEmail().substring(loginDto.getEmail().length() - 1);
+    
+            String resultat = loginDto.getEmail().substring(0, loginDto.getEmail().length() -1 );
+            loginDto.setEmail(resultat);
+            Subject savedSubject = subjectService.createNewSubject(studygroup);
+            System.out.println("Dans usercontroller : " + resultat);
+            User loginUser = userService.getUserByEmail(resultat);
+    
+            System.out.println("Dans usercontroller : " + loginUser.getAlreadyused());
+            System.out.println("Dans usercontroller : " + loginUser.getFirstName());
+            System.out.println("Dans usercontroller : " + loginUser.getCoverPhoto());
+            System.out.println("Dans usercontroller : " + loginUser.getReportExp());
+    
+            if (loginUser.getAlreadyused() != false) {
+                return new ResponseEntity<>("User already used", HttpStatus.BAD_REQUEST);
+            }
+            else {
+                System.out.println("Dans usercontroller ON EST LA LA TEAM : ");
+                loginUser.setAlreadyused(true);
+                loginUser.setStudyGroup(studygroup);
+                userRepository.save(loginUser);
+            UserPrincipal userPrincipal = new UserPrincipal(loginUser);
+            HttpHeaders newHttpHeaders = new HttpHeaders();
+            newHttpHeaders.add(AppConstants.TOKEN_HEADER, jwtTokenService.generateToken(userPrincipal));
+            
+            int id = 0;
+            LoginResponseDto response = new LoginResponseDto(id, loginUser, studygroup);
+            System.out.println("Dans usercontroller ON EST LA LA TEAM : ");
+            
+            return new ResponseEntity<>(response, newHttpHeaders, HttpStatus.OK);
+        }
+        
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody @Valid SignupDto signupDto) {
-        User savedUser = userService.createNewUser(signupDto);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-    }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid LoginDto loginDto) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginDto.getEmail(), loginDto.getPassword())
-        );
-        User loginUser = userService.getUserByEmail(loginDto.getEmail());
-        UserPrincipal userPrincipal = new UserPrincipal(loginUser);
-        HttpHeaders newHttpHeaders = new HttpHeaders();
-        newHttpHeaders.add(AppConstants.TOKEN_HEADER, jwtTokenService.generateToken(userPrincipal));
-        return new ResponseEntity<>(loginUser, newHttpHeaders, HttpStatus.OK);
+
+       
     }
 
     @GetMapping("/profile")

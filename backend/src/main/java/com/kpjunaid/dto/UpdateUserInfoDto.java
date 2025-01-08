@@ -44,7 +44,14 @@ public class UpdateUserInfoDto {
     @Size(max = 64)
     private String countryName;
 
+    private Integer numberofreport;
+
     private Integer reportExp;
+
+    private Boolean alreadyused;
+
+    private String studyGroup;
+
 
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
