@@ -13,16 +13,17 @@ connection = mysql.connector.connect(
 cursor = connection.cursor()
 
 # Define the list of profile photo URLs
+# elles sont dans src/main/resources/images
 profile_photos = [
-    "http://localhost:4200/assets/images/0.jpg",
-    "http://localhost:4200/assets/images/1.jpg",
-    "http://localhost:4200/assets/images/2.jpg",
-    "http://localhost:4200/assets/images/3.jpg",
-    "http://localhost:4200/assets/images/4.jpg",
-    "http://localhost:4200/assets/images/5.jpg",
-    "http://localhost:4200/assets/images/6.jpg",
-    "http://localhost:4200/assets/images/7.jpg",
-    "http://localhost:4200/assets/images/8.jpg"
+    "src/main/resources/images/1.jpg",
+    "src/main/resources/images/2.jpg",
+    "src/main/resources/images/3.jpg",
+    "src/main/resources/images/4.jpg",
+    "src/main/resources/images/5.jpg",
+    "src/main/resources/images/6.jpg",
+    "src/main/resources/images/7.jpg",
+    "src/main/resources/images/8.jpg",
+   
 ]
 
 try:
