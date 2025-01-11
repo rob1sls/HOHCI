@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { AfterViewInit, ViewChild, TemplateRef } from '@angular/core';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
+import { Post } from 'src/app/model/post';
 
 @Component({
     selector: 'app-timeline',
@@ -28,7 +29,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
     timelineTagList: Tag[] = [];
     noPost: boolean = false;
     resultPage: number = 1;
-    resultSize: number = 20;
+    resultSize: number = 200;
     hasMoreResult: boolean = true;
     fetchingResult: boolean = false;
     isTaggedPostPage: boolean = false;
@@ -112,6 +113,32 @@ export class TimelineComponent implements OnInit, OnDestroy {
                         if (postResponseList.length === 0 && currentPage === 1) this.noPost = true;
                         
                         this.timelinePostResponseList.push(...postResponseList);
+
+                        console.log('Timeline Post Response List:', this.timelinePostResponseList);
+                        // compter le nombre de post qui ont comme hatefultype NOT 
+                        let count = 0;
+                        for (let i = 0; i < this.timelinePostResponseList.length; i++) {
+                            if (this.timelinePostResponseList[i].post.hatefulType != 'NOT') {
+                                count++;
+                            }
+
+                        }
+                        console.log('Nombre de post avec hatefulType différent de NOT:', count);
+
+
+                        // tous les 20 posts, dans la liste on ajoute un post special avec juste un texte
+                        for (let i = 0; i < this.timelinePostResponseList.length; i++) {
+                            if (i % 20 == 0) {
+                                this.timelinePostResponseList[i].post.content = 'Bitte merken oder kopieren Sie sich unbedingt das folgende Wort als Code für den Post-Fragebogen: Aufmerksamkeitsdefizit';
+                                this.timelinePostResponseList[i].post.hatefulType = 'BONJOUR';
+                                this.timelinePostResponseList[i].post.likeCount = 0;
+                                this.timelinePostResponseList[i].post.shareCount = 0;
+
+                              
+                            }
+                        }
+                        
+
 
                         this.hasMoreResult = postResponseList.length === this.resultSize;
                         this.resultPage++;

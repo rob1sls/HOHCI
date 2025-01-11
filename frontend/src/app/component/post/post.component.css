@@ -1,3 +1,10 @@
 .red-flag {
     color: red;
   }
+  .font-weight-bold {
+    font-weight: bold !important;
+  }
+  .text-danger {
+    color: red !important;
+  }
+  

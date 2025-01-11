@@ -38,11 +38,13 @@
 	<img *ngIf="postResponse.post.postPhoto" mat-card-image src="{{ postResponse.post.postPhoto }}" alt="">
 
 	<mat-card-content class="mb-4">
-		<p class="p-2" *ngIf="isDetailedPost && postResponse.post.content.length > 0">
-			{{ postResponse.post.content }}
-		</p>
+		<p class="p-2" *ngIf="isDetailedPost && postResponse.post.content.length > 0"
+			[ngClass]="{'text-danger': postResponse.post.hatefulType === 'BONJOUR', 'font-weight-bold': postResponse.post.hatefulType === 'BONJOUR'}">
+			 {{ postResponse.post.content }}
+		 </p>
 
-		<p class="p-2" *ngIf="!isDetailedPost && postResponse.post.content.length > 0">
+		<p class="p-2" *ngIf="!isDetailedPost && postResponse.post.content.length > 0"			[ngClass]="{'text-danger': postResponse.post.hatefulType === 'BONJOUR', 'font-weight-bold': postResponse.post.hatefulType === 'BONJOUR'}">
+
 			{{ postResponse.post.content.length > 128 ? (postResponse.post.content | slice:0:128) + '...' :
 			postResponse.post.content }}
 		</p>
@@ -141,7 +143,8 @@
 			  {{xpGainedmessage}} XP
 			</ng-container>
 			<ng-template #iconTemplate>
-				<mat-icon style="color: #8B0000;">flag</mat-icon>
+				<mat-icon [ngClass]="{'text-danger': postResponse.post.hatefulType !== 'NOT'}" style="color: green;">flag</mat-icon>
+
 
 			</ng-template>
 		  </button>

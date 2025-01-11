@@ -13,5 +13,6 @@ export class Post {
 	isTypeShare: boolean;
 	author: User;
 	sharedPost: Post;
-	postTags: Tag[]
+	postTags: Tag[];
+	hatefulType: string;
 }
