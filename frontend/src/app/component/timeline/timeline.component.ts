@@ -128,7 +128,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
                         // tous les 20 posts, dans la liste on ajoute un post special avec juste un texte
                         for (let i = 0; i < this.timelinePostResponseList.length; i++) {
-                            if (i % 20 == 0) {
+                            if (i % 20 == 19) {
                                 this.timelinePostResponseList[i].post.content = 'Bitte merken oder kopieren Sie sich unbedingt das folgende Wort als Code für den Post-Fragebogen: Aufmerksamkeitsdefizit';
                                 this.timelinePostResponseList[i].post.hatefulType = 'BONJOUR';
                                 this.timelinePostResponseList[i].post.likeCount = 0;
