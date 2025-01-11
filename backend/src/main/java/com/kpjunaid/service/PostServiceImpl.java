@@ -6,6 +6,7 @@ import com.kpjunaid.entity.User;
 import com.kpjunaid.exception.*;
 import com.kpjunaid.dto.TagDto;
 import com.kpjunaid.entity.Tag;
+import com.kpjunaid.enumeration.HatefulType;
 import com.kpjunaid.enumeration.NotificationType;
 import com.kpjunaid.repository.PostRepository;
 import com.kpjunaid.repository.UserRepository;
@@ -23,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,6 +60,7 @@ public class PostServiceImpl implements PostService {
                 .build();
     }
 
+    /*
     @Override
     public List<PostResponse> getTimelinePostsPaginate(Integer page, Integer size) {
         User authUser = userService.getAuthenticatedUser();
@@ -67,7 +71,65 @@ public class PostServiceImpl implements PostService {
                 followingListIds,
                 PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "dateCreated")))
                 .stream().map(this::postToPostResponse).collect(Collectors.toList());
-    }
+    }*/
+
+    @Override
+    public List<PostResponse> getTimelinePostsPaginate(Integer page, Integer size) {
+        User authUser = userService.getAuthenticatedUser();
+        List<User> followingList = authUser.getFollowingUsers();
+        followingList.add(authUser);
+        List<Long> followingListIds = followingList.stream().map(User::getId).toList();
+
+        System.out.println("followingListIds = " + followingListIds.size());
+        
+        List<Post> allPosts = postRepository.findPostsByAuthorIdIn(
+                followingListIds,
+                PageRequest.of(page, 2600, Sort.by(Sort.Direction.DESC, "dateCreated")))
+                .stream().collect(Collectors.toList());
+
+
+        System.out.println("allPosts = " + allPosts.size());
+
+        // Séparer les posts en deux listes en fonction de hatefultype
+        List<Post> postsNotHateful = allPosts.stream()
+                .filter(post -> post.getHatefulType() == HatefulType.NOT)
+                .collect(Collectors.toList());
+        
+        List<Post> postsHateful = allPosts.stream()
+                .filter(post -> post.getHatefulType() != HatefulType.NOT)
+                .collect(Collectors.toList());
+
+        // Mélanger les deux listes de manière aléatoire
+        Collections.shuffle(postsNotHateful);
+        Collections.shuffle(postsHateful);
+
+
+        System.out.println("postsNotHateful = " + postsNotHateful.size());
+        System.out.println("postsHateful = " + postsHateful.size());
+
+        // Calculer le nombre d'éléments à prendre pour chaque liste
+        int postsNotHatefulCount = (int) (size * 0.65);
+        int postsHatefulCount = size - postsNotHatefulCount;
+
+        // Fusionner les deux listes en respectant les proportions de 65% NOT et 35% hateful
+        List<Post> finalPosts = new ArrayList<>();
+        finalPosts.addAll(postsNotHateful.subList(0, Math.min(postsNotHatefulCount, postsNotHateful.size())));
+        finalPosts.addAll(postsHateful.subList(0, Math.min(postsHatefulCount, postsHateful.size())));
+
+        // Mélanger à nouveau la liste finale pour que l'ordre soit complètement aléatoire
+        Collections.shuffle(finalPosts);
+       
+        System.out.println("followingListIds = " + followingListIds.size());
+
+        System.out.println("allPosts = " + allPosts.size());
+
+        System.out.println("postsNotHateful = " + postsNotHateful.size());
+        System.out.println("postsHateful = " + postsHateful.size());
+
+        // Convertir en réponse
+    return finalPosts.stream().map(this::postToPostResponse).collect(Collectors.toList());
+}
+
 
     @Override
     public List<PostResponse> getPostSharesPaginate(Post sharedPost, Integer page, Integer size) {
