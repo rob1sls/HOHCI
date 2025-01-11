@@ -15,7 +15,7 @@ faker = Faker()
 
 
  # Create a 1000 of user with the same password and email
-for i in range(1000):
+for i in range(200):
     first_name = "John"
     last_name = "Doe"
     email = "johndoe" + str(i) + "@gmail.com"  # Generate a random email

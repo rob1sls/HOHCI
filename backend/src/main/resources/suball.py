@@ -12,11 +12,11 @@ cursor = connection.cursor()
 # ID of the user who should follow everyone
 
 # Récupérer les utilisateurs avec des IDs inférieurs à 6370
-cursor.execute("SELECT id FROM users WHERE id < 1000")
+cursor.execute("SELECT id FROM users WHERE id < 11870")
 lower_ids = cursor.fetchall()
 
 # Récupérer les utilisateurs avec des IDs supérieurs à 6370
-cursor.execute("SELECT id FROM users WHERE id > 1000")
+cursor.execute("SELECT id FROM users WHERE id > 11870")
 higher_ids = cursor.fetchall()
 
 # Insérer toutes les relations de suivi

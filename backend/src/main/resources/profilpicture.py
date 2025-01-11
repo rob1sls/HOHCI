@@ -14,7 +14,6 @@ cursor = connection.cursor()
 
 # Define the list of profile photo URLs
 profile_photos = [
-    "http://localhost:4200/assets/images/avatar.jpg",
     "http://localhost:4200/assets/images/0.jpg",
     "http://localhost:4200/assets/images/1.jpg",
     "http://localhost:4200/assets/images/2.jpg",
