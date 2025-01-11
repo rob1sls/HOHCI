@@ -103,55 +103,47 @@
 	<hr class="divider mb-4">
 
 	<mat-chip-list>
-		<mat-chip class="me-3 cursor-pointer"
-			style="padding: 4px 10px !important; min-height: 28px;" (click)="openLikeDialog()">
-			Likes
-			<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-				{{ postResponse.post.likeCount }}
-			</span>
-		</mat-chip>
 
-		<mat-chip class="me-3 cursor-pointer"
-			style="padding: 4px 10px !important; min-height: 28px;" (click)="openCommentDialog()">
-			Comments
-			<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-				{{ postResponse.post.commentCount }}
-			</span>
-		</mat-chip>
 
-		<mat-chip class="cursor-pointer"
-			*ngIf="!postResponse.post.isTypeShare" style="padding: 4px 10px !important; min-height: 28px;"
-			(click)="openShareDialog()">
-			Shares
-			<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-				{{ postResponse.post.shareCount }}
+		<button class="me-2" mat-icon-button matTooltip="Comment" (click)="openCommentDialog()">
+			<mat-icon >message</mat-icon>
+			<span class="position-absolute top-0 translate-middle badge rounded-pill bg-secondary">
 			</span>
-		</mat-chip>
+		</button>
 
-	
 	</mat-chip-list>
 
 	<mat-card-actions align="end" style="margin-top: -50px !important; padding-bottom: 20px;">
+
 		
-	
-		<button class="me-2" mat-icon-button (click)="openReportDialog()">
-			<ng-container *ngIf="showXpMessage; else iconTemplate">
-			  {{xpGainedmessage}} XP
-			</ng-container>
-			<ng-template #iconTemplate>
-			  <mat-icon>flag</mat-icon>
-			</ng-template>
-		  </button>
 		  
 
 
 		<button class="me-2" mat-icon-button matTooltip="{{postResponse.likedByAuthUser ? 'Unlike' : 'Like'}}"
 			(click)="likeOrUnlikePost(postResponse.likedByAuthUser)">
 			<mat-icon [ngClass]="postResponse.likedByAuthUser ? 'text-danger' : 'text-secondary'">favorite</mat-icon>
+			<span class="position-absolute top-0 translate-middle badge rounded-pill bg-secondary">
+				{{ postResponse.post.likeCount }}
+			</span>
 		</button>
 
 		<button mat-icon-button matTooltip="Share" *ngIf="!postResponse.post.isTypeShare || postResponse.post.sharedPost" (click)="openShareConfirmDialog()">
 			<mat-icon class="text-secondary">share</mat-icon>
+			<span class="position-absolute translate-middle badge rounded-pill bg-secondary">
+				{{ postResponse.post.shareCount }}
+			</span>
 		</button>
+
+
+		
+		<button class="me-2" mat-icon-button matTooltip="Report" (click)="openReportDialog()">
+			<ng-container *ngIf="showXpMessage; else iconTemplate">
+			  {{xpGainedmessage}} XP
+			</ng-container>
+			<ng-template #iconTemplate>
+				<mat-icon style="color: #8B0000;">flag</mat-icon>
+
+			</ng-template>
+		  </button>
 	</mat-card-actions>
 </mat-card>

@@ -169,7 +169,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	}}
 
 	handleExperienceChange(): void {
-		this.showRewardMessage = true;
+		this.showRewardMessage = false;
 		this.rewardMessageTimeout = setTimeout(() => {
 			this.showRewardMessage = false;
 		}, 5000); // Afficher pendant 2 secondes

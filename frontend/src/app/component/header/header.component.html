@@ -6,7 +6,7 @@
 	
 	<span class="example-spacer"></span>
 
-	<div *ngIf="showRewardMessage && !isProfilePage" class="reward-message">
+	<div *ngIf="false" class="reward-message">
 		<span>🎉 100 EXP ! Collect your reward here -></span>
 	</div>
 
@@ -121,22 +121,12 @@
 			</div>
 		</mat-menu>
 		
-		<button mat-icon-button [matMenuTriggerFor]="mainMenu">
-			<mat-icon>more_vert</mat-icon>
-		</button>
+	
 		
 
 
 
-		<mat-menu #mainMenu="matMenu" xPosition="before">
-			<a mat-menu-item href="/profile">Profile</a>
-			<a mat-menu-item href="/settings">Settings</a>
-			<a mat-menu-item href="/logout">Logout</a>
-		</mat-menu>
+
 	</div>
 </mat-toolbar>
 
-<button mat-fab color="primary" matTooltip="Create New Post" matTooltipPosition="left" class="position-fixed"
-	style="bottom: 30px; right: 30px;" (click)="openPostDialog()">
-	<mat-icon>add</mat-icon>
-</button>
