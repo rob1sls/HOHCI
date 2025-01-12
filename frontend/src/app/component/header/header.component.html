@@ -2,6 +2,7 @@
 
 	<a href="/" class="text-white text-decoration-none">
 		<img src="assets/images/logo_blanc.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+		<span class="fw-500">My timeline</span>
 	</a>
 	
 	<span class="example-spacer"></span>
@@ -16,8 +17,7 @@
 		<span class="mat-body-strong d-inline-block align-middle ps-2">{{ authUser?.firstName }}</span>
 	</a>
 
-	<a mat-raised-button class="me-3" *ngIf="!isUserLoggedIn" href="/login">Login</a>
-	<a mat-raised-button *ngIf="!isUserLoggedIn" href="/signup">Signup</a>
+	
 
 
 
