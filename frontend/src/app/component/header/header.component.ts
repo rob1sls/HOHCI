@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 		if (this.authService.isUserLoggedIn()) {
 			this.isUserLoggedIn = true;
 			this.authUser = this.authService.getAuthUserFromCache();
-			this.defaultProfilePhotoUrl = this.authUser.profilePhoto;
 		} else {
 			this.isUserLoggedIn = false;
 		}
@@ -86,6 +85,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 				this.isUserLoggedIn = true;
 			}
 		});
+
+		this.defaultProfilePhotoUrl = this.authUser.profilePhoto;
+
+		console.log(this.defaultProfilePhotoUrl);
+
 	}
 
 	ngOnDestroy(): void {
