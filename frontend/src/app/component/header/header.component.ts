@@ -86,6 +86,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 			}
 		});
 
+		console.log(this.authUser);
+		console.log(this.authUser.profilePhoto);
+
 		this.defaultProfilePhotoUrl = this.authUser.profilePhoto;
 
 		console.log(this.defaultProfilePhotoUrl);
