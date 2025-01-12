@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 		if (this.authService.isUserLoggedIn()) {
 			this.isUserLoggedIn = true;
 			this.authUser = this.authService.getAuthUserFromCache();
+			this.defaultProfilePhotoUrl = this.authUser.profilePhoto;
 		} else {
 			this.isUserLoggedIn = false;
 		}
